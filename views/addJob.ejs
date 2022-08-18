@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head.ejs') %>
+
+  <body>
+    <%- include('partials/nav.ejs') %>
+      <br><br><br><br><br>
+
+      <form class="row g-3" action="/home/addJob/<%=username%>" method="post">
+        <div class="col-md-3">
+          <label for="validationDefault01" class="form-label">Job name</label>
+          <input name="Jobname" type="text" class="form-control" id="validationDefault01" placeholder="Web development" required>
+        </div>
+        <div class="col-md-3">
+          <label for="validationDefault02" class="form-label">Overall Price</label>
+          <input name="Price" type="number" class="form-control" id="validationDefault02" placeholder="Rs.2000" required>
+        </div>
+        <div class="col-md-3">
+          <label for="validationDefault03" class="form-label">Email address</label>
+          <div class="input-group has-validation">
+            <span class="input-group-text" id="inputGroupPrepend">@</span>
+            <input name="email" type="email" class="form-control" id="validationDefault03" aria-describedby="inputGroupPrepend" required>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label for="validationDefault04" class="form-label">Experence level :</label>
+          <select name="Experience" class="form-select" id="validationDefault04" required>
+            <option selected disabled value="">Choose...</option>
+            <option value="entry">EntryLevel</option>
+            <option value="intermediate">IntermediateLevel</option>
+            <option value="expert">Expert</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label for="validationDefault04" class="form-label">Select the category :</label>
+          <select name="category" class="form-select" id="validationDefault04" required>
+            <option selected disabled value="">Choose...</option>
+            <option value="Web development">Web development</option>
+            <option value="Frontend developer">Frontend developer</option>
+            <option value="Backend developer">Backend developer</option>
+            <option value="Web Designer">Web Designer</option>
+            <option value="Flutter development">Flutter developer</option>
+            <option value="UI/UX designers">UI/UX designers</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label for="validationDefault04" class="form-label">Skills required</label>
+          <input name="skills" type="text" class="form-control" id="validationDefault04" placeholder="HTML,CSS,---,---" required>
+        </div>
+        <div class="col-md-3">
+          <label for="validationDefault05" class="form-label">Country</label>
+          <input name="country" type="text" class="form-control" id="validationDefault05" required>
+        </div>
+        <div class="col-md-3">
+          <label for="validationDefault04" class="form-label">Job Type:</label>
+          <select name="jobType" class="form-select" id="validationDefault04" required>
+            <option selected disabled value="">Choose...</option>
+            <option value="hourly">Paying Hourly</option>
+            <option value="fixedPrice">Fixed Prices</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <div class="mb-3">
+            <label for="validationTextarea" class="form-label">Discription about project</label>
+            <textarea name="discription" class="form-control" id="validationTextarea" rows="3" required></textarea>
+          </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Add Job</button>
+        </div>
+      </form>
+
+
+
+
+      <!-- Footer Section -->
+      <%- include('partials/footer.ejs') %>
+
+  </body>
+
+</html>

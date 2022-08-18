@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/headLanding.ejs') %>
+ 
+  <body>
+    <!-- Navigation Bar -->
+    <%- include('partials/navLanding.ejs') %>
+
+    <!-- Login Body -->
+    <div class="container login-container">
+      <div class="row">
+        <!-- Login Image -->
+        <div class="col-0 col-sm-6 col-md-7 login-image-container">
+          <img
+            src="/image/Login Image.svg"
+            alt="Login Image"
+            class="img-fluid"
+          />
+        </div>
+        <!-- Login Form -->
+        <div class="col-12 col-sm-6 col-md-5">
+
+          <form action="/login" method="post" id="loginForm" class="login-form">
+            <div class="h4 login-title">Sign In to Gratis Agency</div>
+            <!--Alert message-->
+            <% if(locals.errors) {%>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              <strong><%= locals.errors %></strong> You should check in some of those fields below.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <%}%>
+            <!-- Username Input -->
+            <div class="field">
+              <label class="label">Username :</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input user-name-input" type="text" name="username" placeholder="Enter Username" id="loginUsername"/>
+                <span class="icon is-small is-left"><i class="fas fa-user"></i></span>
+              </div>
+              <small class="text-danger" id="small6"></small>
+              <label for="" class="userNameErrorLabel"></label>
+            </div>
+
+            <!-- Password Input -->
+            <div class="field">
+              <label class="label">Password</label>
+              <div class="control has-icons-left has-icons-right">
+                <input class="input password-input" type="password" name="password" placeholder="Enter Password" id="loginPassword"s/>
+                <span class="icon is-small is-left"><i class="fas fa-unlock"></i></span>
+              </div>
+              <small class="text-danger" id="small7"></small>
+              <label for="" class="passwordErrorLabel"></label>
+            </div>
+
+            <!-- Submit Button -->
+            <input type="submit" value="Login" class="submit-button" />
+            <p class="redirect">
+              Not a user yet? <a href="/signUp">Sign Up Here.</a>
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- Footer Section -->
+    <%- include('partials/footer.ejs') %>
+  </body>
+</html>
+<script>
+  loginForm.addEventListener('submit', (e) => {
+    let loginUsernameErrors = []
+    let loginPasswordErrors = []
+    let form = document.getElementById('loginForm');
+    let loginUsername = document.getElementById('loginUsername').value.trim();
+    let loginPassword = document.getElementById('loginPassword').value.trim();
+    
+    if ( loginUsername.length === 0) {
+      loginUsernameErrors.push("*Username cannot be blank");
+    }
+    else if (loginUsername.length < 3) {
+      loginUsernameErrors.push("*Username must  be at least 3 characters");
+    }
+    else { }
+
+    if ( loginPassword.length === 0) {
+      loginPasswordErrors.push("*Password field cannot be empty");
+    }
+    else if (loginPassword.length < 6) {
+
+      loginPasswordErrors.push("*Password must  be at least 6 characters long");
+    }
+    else { }
+
+    if (loginUsernameErrors.length > 0 || loginPasswordErrors.length >0) {
+      e.preventDefault();
+      document.getElementById('small6').innerText = loginUsernameErrors.join(",")
+      document.getElementById('small7').innerText = loginPasswordErrors.join(",")
+    }
+  })
+</script>

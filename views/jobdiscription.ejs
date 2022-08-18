@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include('partials/head.ejs') %>
+
+<body>
+  <%- include('partials/nav.ejs') %>
+
+
+    <div class="page-wrapper2">
+      <div class="container-fluid headingdesc">
+        <div class="name">
+          <h1 class="projectName"><%= locals.Job.JobName%></h1>
+        </div>
+        <div class="buttons">
+          <p>
+            <a class="btn btn-secondary" data-bs-toggle="collapse" href="#details" role="button" aria-expanded="false"
+              aria-controls="collapseExample">
+              Project Details
+            </a>
+            <button class="btn btn-secondary" type="button" data-bs-toggle="offcanvas" data-bs-target="#proposals"
+              aria-controls="proposals">Proposals</button>
+          </p>
+        </div>
+      </div>
+      <br>
+
+      <div class="container">
+        <% if(locals.errors) {%>
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong><%= locals.errors %></strong> We can not proceed
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          <%}%>
+        <div class="collapse show" id="details">
+          <div class="row">
+            <div class="col-12 col-lg-8 order-1">
+              
+                <div class="card">
+                  <div class="card-body1">
+                    <h5 class="card-title">Project Details</h5>
+                    <hr>
+                    <p class="card-text"><%=locals.Job.Discription%></p>
+                    <h6>Skills Required</h6>
+                    <div>
+                      <% for(var i =0;i<(locals.Job).Skills.length;i++) { %>
+                        <button class="btn-skills"><%=locals.Job.Skills[i]%></button>
+                      <% } %>
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-body1">
+                    <h5 class="card-title">Place a Bid on this Project</h5>
+                    <hr>
+                    <p class="card-text">You can edit your bid until the project is awarded to someone.</p>
+                    <!-- <a href="#" class="btn btn-primary">Button</a> -->
+                    <form class="row g-3" action="/home/proposal/<%=username%>/<%=Job._id%>" method="post">
+                      <div class="col-mb-12">
+                        <label for="validationDefault01" class="form-label">Bid Amount per hour</label>
+                        <input name="amount" type="number" class="form-control" id="validationDefault01" placeholder="Enter Amount in INR" required>
+                      </div>
+                      <div class="col-mb-6">
+                        <label for="validationDefault02" class="form-label">No of days you work?</label>
+                        <input name="days" type="number" class="form-control" id="validationDefault02" placeholder="Enter number of days" required>
+                      </div>
+                      <div class="col-mb-12">
+                        <label for="validationDefault03" class="form-label">Describe your proposal</label>
+                        <textarea name="discribe" class="form-control" id="validationDefault03" placeholder="What makes you the best candidate for this project?" rows="3" required></textarea>
+                      </div>
+                      <div class="col-12">
+                        <button class="btn-skills" type="submit">Place a brid</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+            </div>
+
+            <div class="col-10 col-lg-4 order-2">
+
+                <div class="card">
+                  <div class="card-body1">
+                    <h5 class="card-title">About client</h5>
+                    <hr>
+                    <p class="card-text">
+                      Country : <span class="country"><%=locals.Job.country%></span> <br>
+                      Owner : <%=locals.Job.Owner%> <br>
+                      Member since <span>Mar 2022</span>
+                    </p>
+                    <hr>
+                    <h6>Client Verification</h6>
+                    <li>Identity verified</li>
+                    <li>Payment verified</li>
+                    <li>Email verified</li>
+                    <li>Phone verified</li>
+                    <li>Profile Completed</li>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="proposals overflow-scroll">
+        <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="proposals"
+          aria-labelledby="header">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="header">Proposals</h5>
+            <hr>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <% for(var i=0;i<(locals.Job.Proposals).length;i++) {%>
+              <div class="card">
+                <div class="card-header">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col">
+                        <img src="/image/Avatar 1.svg" class="card-img-top" alt="profilePic">
+                      </div>
+
+                      <div class="col">
+                        <p><span class="name"><%= locals.Job.Proposals[i].madeby%></span><br>Reviews: <span class="review">4.9</span> /5.0</p>
+                      <%if(locals.username==locals.Job.Owner ) { %>
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=<%=locals.Job.Proposals[i].email%>&su=About+the+proposal+you+made&body=Mail+me+your+details">Mail him</a>
+                        <%}%>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Rs.<%=locals.Job.Proposals[i].amount%> per hour</h5>
+                  <p class="card-text"><%= locals.Job.Proposals[i].discribe%></p>
+                </div>
+              </div>
+            <% } %>
+
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+</body>
+
+</html>

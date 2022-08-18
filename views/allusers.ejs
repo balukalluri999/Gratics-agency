@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head.ejs') %>
+
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar navbar-expand-lg py-0 m-0 navbar-light fixed-top bg-light">
+            <div class="container-fluid py-3 px-4 navigation-container">
+              <a href="/admin/<%=username%>"><img class="navbar-brand" src="/image/galogofinal.png" /></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+        
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-1 mb-lg-0">
+                  <li class="nav-item">
+                    <a href="/admin/<%=username%>" class="nav-link nav-link-transparent displayUser-link" 
+                    aria-current="page"
+                    >Display all Users</a>
+                  </li>
+        
+                  <li class="nav-item">
+                    <a href="/admin/r=jobs/<%=username%>" class="nav-link nav-link-transparent displayJob-link">Display all Jobs</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/" class="nav-link nav-link-transparent notifications-redirect" >
+                      <!-- <i class="far fa-bell fa-custom"></i> -->
+                      <!-- <span class="badge rounded-pill bg-danger hide">1</span> -->
+                      Logout
+                    </a>
+                  </li>
+                  <!-- <li class="nav-item">
+                    <a href="/admin/cv/<%=username%>" class="nav-link nav-link-transparent profile-redirect">
+                      <i class="fas fa-user-circle fa-custom"></i>
+                    </a>
+                  </li> -->
+                </ul>
+              </div>
+            </div>
+          </nav>
+        <br><br><br><br>
+        <!-- Body -->
+        <table class="table table-striped">
+            <tr>
+                <th>S.No</th>
+                <th>UserName</th>
+                <th>Email</th>
+                <th>Status</th>
+    
+            </tr>
+            <%if(locals.rows){%>
+                <% for (let i=0; i < rows.length; i++){%>
+                    <tr>
+                        <td><%- i+1%></td>
+                        <td><%- rows[i].username%></td>
+                        <td><%- rows[i].EmailId%></td>
+                        <td><a href="/admin/<%=username%>/r=user/<%=rows[i]._id%>"><button  >Drop</button></a> </td>
+                    </tr>
+                    <% }%>
+           <%}%> 
+        </table>
+
+        <!-- Footer Section -->
+        <%- include('partials/footer.ejs') %>
+            </div>
+            <!-- JQuery CDN -->
+            <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+            <!--waypoints library-->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+            <!--counter-up library-->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+            <!-- Animate On Scroll CDN -->
+            <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    </body>
+
+</html>

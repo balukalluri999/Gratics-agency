@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('partials/head.ejs') %>
+<body>
+  <div class="main">
+    <!-- Navigation -->
+    <%- include('partials/nav.ejs') %>
+   <br><br><br><br>
+    <!-- Body -->
+    <div class="container-fluid page-wrapper">
+      <!-- Welcome Area -->
+      <div class="row inner-page-wrapper d-flex align-items-center">
+      <div class="col-12 col-md-12 col-lg-4 col-xl-3 welcome-card text-center order-2 order-lg-1" style="margin-left:10%;width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title ">Hi <%=username%></h5>
+          <p class="card-text ">Get offers from freelancers for your project</p>
+          <a href="/home/addJob/<%=username%>" class="btn ">Post a Job</a>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-12 col-lg-7 col-xl-8 order-1 order-lg-2    welcome-statstics-main-container">
+        <div class="container-fluid welcome-statistics-container">
+          <div class="row welcome-statistics-card d-flex align-items-center flex-row justify-content-center">
+            <p class="col-4 welcome-statistics">
+              <span class="welcome-statstics-main ">76M
+                <br />
+              </span>
+              Users
+            </p>
+            <p class="col-4 welcome-statistics">
+              <span class="welcome-statstics-main">60K
+                <br />
+              </span>
+              Jobs
+            </p>
+            <p class="col-4 welcome-statistics">
+              <span class="welcome-statstics-main">4 Gigs
+                <br />
+              </span>
+              Per minute
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+<br> 
+    <% if(locals.message) {%>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong><%= locals.message %></strong> pls wait for the reply.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <%}%>
+    <div class="container-fluid cards-container">
+
+      <%if(locals.Jobs){ %>
+        <p class="job-box-titles">My Projects</p>
+        <div class="row homepage-row">
+        <% for(var i =0;i<(locals.Jobs).length;i++) {%>
+        <div class="col-6 col-sm-6 col-md-4 col-lg-4 col-xl-3 mt-3">
+          <a href="/home/jobDetails/searchname=/<%=locals.Jobs[i].JobName%>/<%=locals.username%>" style="text-decoration:none; color:black">
+          <div class="single-job-box">
+            <img src="/image/graphics and design.jpg" class="card-img-top" alt="...">
+            <div class="job-box-header"><%=locals.Jobs[i].JobName%></div>
+            <div class="job-box-sub-header"><%=locals.Jobs[i].Owner%></div>
+            <p class="job-box-description"><%=locals.Jobs[i].Discription%></p>
+            <div class="job-box-container">
+              <div class="job-pricing-container">
+                Starting At
+                <span class="job-pricing-container-price">Rs.<%=locals.Jobs[i].Price%></span>
+              </div>
+            </div>
+          </div></a>
+        </div>
+        <%}%>
+      <%}%>
+
+
+      </div>
+    </div>
+
+    </div>
+    </section>
+    <!-- Footer Section -->
+    <%- include('partials/footer.ejs') %>
+  </div>
+  <!-- JQuery CDN -->
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <!--waypoints library-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+  <!--counter-up library-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+  <!-- Animate On Scroll CDN -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+</body>
+
+</html>

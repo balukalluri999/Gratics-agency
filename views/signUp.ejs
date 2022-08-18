@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <%- include('partials/headLanding.ejs') %>
+
+<body>
+  <!-- Navigation Bar -->
+  <%- include('partials/navLanding.ejs') %>
+
+  <!-- Message for unsupported screen sizes -->
+  <h3 class="no-support-device">
+    Sorry, We will soon support your screen size.
+  </h3>
+
+  <!-- Sign Up Body -->
+  <div class="container sign-up-container">
+    <div class="row ">
+      <div class="col-6 col-sm-6 sign-up-image-container">
+        <img src="/image/Sign Up Image.svg" alt="" />
+      </div>
+      <div class="col-12 col-sm-6">
+
+        <form action="/signUp" method="post" class="sign-up-form" id="form">
+          <div class="h4 sign-up-title">Sign Up for Gratis Agency</div>
+            <!--Alert message-->
+            <% if(locals.error) {%>
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong><%= locals.error %></strong> You should check the fields and try again.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+              <%}%>
+          <!-- Username Input -->
+          <div class="field">
+            <label class="label">Username :</label>
+            <div class="control has-icons-left has-icons-right">
+              <input name="username" class="input user-name-input" type="name" placeholder="Enter Username" id="u" />
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+              <small id="small1" class="text-danger"></small>
+            </div>
+
+
+            <ul class="input-requirements hide">
+              <li>At least 6 characters long</li>
+              <li>No special characters and numbers</li>
+            </ul>
+            <label for="" class="userNameErrorLabel"></label>
+          </div>
+
+
+
+          <!-- Email Input -->
+          <div class="field">
+            <label class="label">Email :</label>
+            <div class="control has-icons-left has-icons-right">
+              <input name="email" class="input user-name-input" type="email" placeholder="Enter Email" id="em" />
+              <span class="icon is-small is-left">
+                <i class="fas fa-user"></i>
+              </span>
+              <small id="small4" class="text-danger"></small>
+            </div>
+
+
+            <ul class="input-requirements hide">
+              <li>Must contain @</li>
+              <li>No special characters and numbers</li>
+            </ul>
+            <label for="" class="userNameErrorLabel"></label>
+          </div>
+
+
+          <!-- Password Input -->
+          <div class="field">
+            <label class="label">Password :</label>
+            <div class="control has-icons-left has-icons-right">
+              <input name="password" class="input password-input" type="password" placeholder="Enter Password" id="p" />
+              <span class="icon is-small is-left">
+                <i class="fas fa-unlock"></i>
+              </span>
+              <small id="small2" class="text-danger"></small>
+            </div>
+            <br>
+          </div>
+
+          <!-- Password Confirm Input -->
+          <div class="field">
+            <label class="label">Confirm Password</label>
+            <div class="control has-icons-left has-icons-right">
+              <input name="passwordConf" class="input password-confirm-input" type="password" placeholder="Enter Password" id="cp" />
+              <span class="icon is-small is-left">
+                <i class="fas fa-unlock"></i>
+              </span>
+              <small id="small3" class="text-danger"></small>
+            </div>
+            <br>
+          </div>
+
+          <!-- User Type Selection -->
+          <div class="field">
+            <div class="control user-type-field">
+              <label class="radio p-0">
+                <input type="radio" name="userType" value="user" id="userType1" />
+                Sign up as a User
+              </label>
+              <label class="radio p-0">
+                <input type="radio" name="userType" value="admin" id="userType2" />
+                Sign up as an Admin
+              </label>
+            </div>
+            <small id="small5" class="text-danger"></small>
+          </div>
+
+          <!-- Submit Button -->
+          <input type="submit" value="Sign Up" class="submit-button" />
+
+          <p class="redirect">
+            Already a user? <a href="/login">Sign In Here.</a>
+          </p>
+        </form>
+        <p class="text-danger" id="eu">
+
+      </div>
+    </div>
+  </div>
+  <!-- Footer Section -->
+
+  <%- include('partials/footer.ejs') %>
+  <script src="/js/script.js"></script>
+</body>
+
+</html>

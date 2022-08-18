@@ -1,0 +1,83 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: poppins;
+    box-sizing: content-box;
+}
+a{
+    text-decoration: none;
+}
+#t{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 90%;
+}
+.t-h{
+    letter-spacing: 2px;
+    margin: 40px 0px;
+    padding: 15px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.t-h h1{
+    font-size: 2.5rem;
+    font-weight: 600;
+    background-color:red;
+    color: #ffffff;
+    padding: 20px 40px;    
+}
+.t-h span{
+    font-size: 2.5rem;
+    color:black;
+    margin-bottom: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+.t-b-c{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.t-b{
+    width: 500px;
+    box-shadow: 2px 2px 30px rgba(0,0,0,0.1);
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 16px;
+    cursor: pointer;
+}
+.dp{
+    display: flex;
+    align-items: center;
+}
+.user strong{
+    counter-reset: #3f3f3f;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+.userv span{
+    color: #929292;
+    font-size: 0.9rem;
+}
+.comments{
+    color: #f9d71c;
+}
+.checked{
+    color: #f9d71c;
+}
+.b-top{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.lancer-comment p{
+    font-size: 0.9rem;
+    color: #6f6f6f;
+}
